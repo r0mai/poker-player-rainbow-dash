@@ -5,7 +5,7 @@ import os
 import BaseHTTPServer
 
 HOST_NAME = '0.0.0.0'
-PORT_NUMBER = 9300
+PORT_NUMBER = os.environ.has_key('PORT') and int(os.environ['PORT']) or 9300
 
 class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
