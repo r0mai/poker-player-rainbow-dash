@@ -1,5 +1,7 @@
 #include "Hand.h"
 
+#include <algorithm>
+
 Hand2 parseHand(json::Value value) {
     Hand2 hand;
     hand[0] = Card(value[size_t(0)]);
