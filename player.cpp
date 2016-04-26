@@ -17,8 +17,7 @@ int Player::betRequest(json::Value game_state) {
 
     std::cerr << "XXXXXXXXXX Our hand is = " << hand << std::endl;
 
- //   auto action = rankHoleCard(hand);
-    auto action = HoleCardRank::CALLABLE;
+    auto action = rankHoleCard(hand);
 
     std::cerr << "XXXXXXXXX action is " << int(action) << std::endl;
 
