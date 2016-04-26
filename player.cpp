@@ -30,15 +30,15 @@ int preFlop(json::Value game_state) {
 }
 
 int flop(json::Value game_state) {
-
+    return preFlop(game_state);
 }
 
 int turn(json::Value game_state) {
-
+    return preFlop(game_state);
 }
 
 int river(json::Value game_state) {
-
+    return preFlop(game_state);
 }
 
 int Player::betRequest(json::Value game_state) {
@@ -51,7 +51,18 @@ int Player::betRequest(json::Value game_state) {
 
     std::cerr << "XXXXXXXXXX Our hand is = " << hole_cards << std::endl;
 
-    return preFlop(game_state);
+    switch (game_state["community_cards"].ToArray().size()) {
+        default:
+        case 0:
+            return preFlop(game_state);
+        case 3:
+            return flop(game_state);
+        case 4:
+            return turn(game_state);
+        case 5:
+            return river(game_state);
+    }
+
 }
 
 void Player::showdown(json::Value game_state)
