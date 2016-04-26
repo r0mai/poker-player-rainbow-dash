@@ -35,9 +35,9 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
             game_state = postvars['game_state'][0]
             data = json.loads(game_state)
             index = data.get('in_action', 0)
-            cards = data.get('players', [])[index].get('hole_cards', [])
+            our_cards = data.get('players', [])[index].get('hole_cards', [])
             comm_cards = data.get('community_cards', [])
-            cards += comm_cards
+            cards = our_cards + comm_cards
 
             if len(cards) >= 5:
                 url = 'http://rainman.leanpoker.org/rank'
