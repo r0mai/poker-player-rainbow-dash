@@ -52,7 +52,7 @@ int handlePair(json::Value game_state) {
         return toAction(HoleCardRank::RAISABLE);
     }
     if (hole_cards[0].rank == hole_cards[1].rank &&
-        board.back().rank >= hole_cards[1].rank)
+        board.back().rank <= hole_cards[1].rank)
     {
         return toAction(HoleCardRank::ALLIN);
     }
