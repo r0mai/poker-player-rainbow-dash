@@ -48,10 +48,10 @@ int flop(json::Value game_state) {
         case 2: return toAction(HoleCardRank::CALLABLE);
         case 3: return toAction(HoleCardRank::RAISABLE);
         case 4: return toAction(HoleCardRank::RAISABLE);
-        case 5: return toAction(HoleCardRank::RAISABLE);
-        case 6: return toAction(HoleCardRank::RAISABLE);
-        case 7: return toAction(HoleCardRank::RAISABLE);
-        case 8: return toAction(HoleCardRank::RAISABLE);
+        case 5: return toAction(HoleCardRank::ALLIN);
+        case 6: return toAction(HoleCardRank::ALLIN);
+        case 7: return toAction(HoleCardRank::ALLIN);
+        case 8: return toAction(HoleCardRank::ALLIN);
     }
 }
 
