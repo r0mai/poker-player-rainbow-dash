@@ -1,4 +1,5 @@
 #include "player.h"
+#include "Hand.h"
 
 const char* Player::VERSION = "Default C++ folding player";
 

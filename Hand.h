@@ -9,4 +9,4 @@ using Hand5 = std::array<Card, 5>;
 using Hand6 = std::array<Card, 6>;
 using Hand7 = std::array<Card, 7>;
 
-
+Hand2 parseHand(json::Value value);
