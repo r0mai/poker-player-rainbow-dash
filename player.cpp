@@ -37,6 +37,10 @@ int preFlop(json::Value game_state) {
     return toAction(rankHoleCard(hole_cards));
 }
 
+int handlePair(json::Value game_state) {
+    return toAction(HoleCardRank::CALLABLE); // pair
+}
+
 int flop(json::Value game_state) {
     if (!game_state.HasKey("eval")) {
         std::cerr << "NO eval in flop()" << std::endl;
@@ -49,7 +53,7 @@ int flop(json::Value game_state) {
         default:
             std::cerr << "Unknown rank" << std::endl;
         case 0: return toAction(HoleCardRank::FOLDABLE);
-        case 1: return toAction(HoleCardRank::CALLABLE);
+        case 1: return handlePair(game_state);
         case 2: return toAction(HoleCardRank::CALLABLE);
         case 3: return toAction(HoleCardRank::RAISABLE);
         case 4: return toAction(HoleCardRank::RAISABLE);
