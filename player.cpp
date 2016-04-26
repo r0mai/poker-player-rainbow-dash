@@ -15,9 +15,20 @@ int Player::betRequest(json::Value game_state) {
 
     Hand2 hand = parseHand(game_state["players"][in_action]["hole_cards"]);
 
-    std::cerr << "XXXXXXXXXX Our hand is = " << hand << std::endl;
+    auto action = rankHoleCard(hand);
 
-    return current_buy_in - our_bet + minimum_raise;
+    std::cerr << "XXXXXXXXXX Our hand is = " << hand << std::endl;
+    std::cerr << "XXXXXXXXX action is " << int(action) << std::endl;
+
+    switch (action) {
+        case HoleCardRank::RAISABLE:
+            return current_buy_in - our_bet + minimum_raise;
+        case HoleCardRank::FOLDABLE:
+            return 0;
+        case HoleCardRank::CALLABLE:
+            return current_buy_in - our_bet;
+    }
+    return 0;
 }
 
 void Player::showdown(json::Value game_state)

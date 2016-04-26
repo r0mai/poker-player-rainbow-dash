@@ -27,6 +27,10 @@ Card::Card(json::Value value) {
     else { std::cerr << "Suit parse error " << rank_string << std::endl; }
 }
 
+bool operator<(const Card& lhs, const Card& rhs) {
+    return lhs.rank < rhs.rank;
+}
+
 std::ostream& operator<<(std::ostream& os, const Suit& suit) {
     switch (suit) {
         case Suit::SPADE: os << "s"; break;

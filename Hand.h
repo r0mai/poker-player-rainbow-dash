@@ -13,6 +13,14 @@ using Hand7 = std::array<Card, 7>;
 
 Hand2 parseHand(json::Value value);
 
+enum class HoleCardRank {
+    RAISABLE,
+    CALLABLE,
+    FOLDABLE
+};
+
+HoleCardRank rankHoleCard(const Hand2& hand);
+
 inline
 std::ostream& operator<<(std::ostream& os, const std::array<Card, 2>& hand) {
     os << hand[0];
