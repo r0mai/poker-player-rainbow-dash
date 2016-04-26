@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/r0mai/poker-player-rainbow-dash.svg?branch=master)](https://travis-ci.org/r0mai/poker-player-rainbow-dash)
+
 poker-player-cpp
 ================
 
