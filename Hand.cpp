@@ -34,7 +34,7 @@ HoleCardRank rankHoleCard(const Hand2& hand) {
     /* 8 */ {f, f, f, f, f, f, f, f, r, f, f, f, f, f, r},
     /* 9 */ {f, f, f, f, f, f, f, f, f, r, f, f, f, f, r},
     /* T */ {f, f, f, f, f, f, f, f, f, f, a, c, r, r, r},
-    /* J */ {f, f, f, f, f, f, f, f, f, f, f, a, r, r, r},
+    /* J */ {f, f, f, f, f, f, f, f, f, f, c, a, r, r, r},
     /* Q */ {f, f, f, f, f, f, f, f, f, f, r, r, a, r, r},
     /* K */ {f, f, f, f, f, f, f, f, f, r, r, r, r, a, r},
     /* A */ {f, f, r, r, r, r, r, r, r, r, r, r, r, r, a}
