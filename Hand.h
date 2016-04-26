@@ -14,6 +14,7 @@ using Hand7 = std::array<Card, 7>;
 Hand2 parseHand(json::Value value);
 
 enum class HoleCardRank {
+    ALLIN,
     RAISABLE,
     CALLABLE,
     FOLDABLE

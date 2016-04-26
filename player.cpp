@@ -22,8 +22,10 @@ int Player::betRequest(json::Value game_state) {
     std::cerr << "XXXXXXXXX action is " << int(action) << std::endl;
 
     switch (action) {
+        case HoleCardRank::ALLIN:
+            return 5000;
         case HoleCardRank::RAISABLE:
-            return current_buy_in - our_bet + minimum_raise;
+            return current_buy_in - our_bet + 3*minimum_raise;
         case HoleCardRank::FOLDABLE:
             return 0;
         case HoleCardRank::CALLABLE:
