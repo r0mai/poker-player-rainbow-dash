@@ -130,5 +130,6 @@
 		}
 		],
 		"second_value": 6
-	}
+	},
+	"our_count": 2
 }
