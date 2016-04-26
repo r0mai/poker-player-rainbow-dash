@@ -11,34 +11,64 @@ int our_bet;
 int current_buy_in;
 Hand2 hole_cards;
 
-int preFlop(json::Value game_state) {
-    auto action = rankHoleCard(hole_cards);
+int toAction(HoleCardRank rank) {
+    std::cerr << "XXXXXXXXX action is " << int(rank) << std::endl;
 
-    std::cerr << "XXXXXXXXX action is " << int(action) << std::endl;
-
-    switch (action) {
+    switch (rank) {
         case HoleCardRank::ALLIN:
             return 5000;
         case HoleCardRank::RAISABLE:
             return current_buy_in - our_bet + 3*minimum_raise;
+        default:
+            std::cerr << "Unknown action" << std::endl;
         case HoleCardRank::FOLDABLE:
             return 0;
         case HoleCardRank::CALLABLE:
             return current_buy_in - our_bet;
     }
-    return 0;
+}
+
+int preFlop(json::Value game_state) {
+    return toAction(rankHoleCard(hole_cards));
 }
 
 int flop(json::Value game_state) {
-    return preFlop(game_state);
+    if (!game_state.HasKey("eval")) {
+        std::cerr << "NO eval in flop()" << std::endl;
+        return preFlop(game_state);
+    }
+
+    int rank = game_state["eval"]["rank"].ToInt();
+
+    switch (rank) {
+        default:
+            std::cerr << "Unknown rank" << std::endl;
+        case 0: return toAction(HoleCardRank::FOLDABLE);
+        case 1: return toAction(HoleCardRank::FOLDABLE);
+        case 2: return toAction(HoleCardRank::CALLABLE);
+        case 3: return toAction(HoleCardRank::RAISABLE);
+        case 4: return toAction(HoleCardRank::RAISABLE);
+        case 5: return toAction(HoleCardRank::RAISABLE);
+        case 6: return toAction(HoleCardRank::RAISABLE);
+        case 7: return toAction(HoleCardRank::RAISABLE);
+        case 8: return toAction(HoleCardRank::RAISABLE);
+    }
 }
 
 int turn(json::Value game_state) {
-    return preFlop(game_state);
+    if (!game_state.HasKey("eval")) {
+        std::cerr << "NO eval in turn()" << std::endl;
+        return preFlop(game_state);
+    }
+    return flop(game_state);
 }
 
 int river(json::Value game_state) {
-    return preFlop(game_state);
+    if (!game_state.HasKey("eval")) {
+        std::cerr << "NO eval in river()" << std::endl;
+        return preFlop(game_state);
+    }
+    return flop(game_state);
 }
 
 int Player::betRequest(json::Value game_state) {
