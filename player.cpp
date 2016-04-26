@@ -11,6 +11,8 @@ int Player::betRequest(json::Value game_state) {
 
     int current_buy_in = game_state["current_buy_in"];
 
+    Hand2 hand = parseHand(game_state["players"][in_action]["hole_cards"]);
+
     return current_buy_in - our_bet + minimum_raise;
 }
 
