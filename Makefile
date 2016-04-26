@@ -1,7 +1,7 @@
 
 CC=g++
 
-CFLAGS=-c -std=c++11
+CFLAGS=-c -std=c++11 -O0 -g
 
 all: player
 
