@@ -25,3 +25,7 @@ json.o:
 
 clean:
 	rm -rf *.o player
+
+test: player
+	 @cat tests/input1.json | player bet_request
+	 @cat tests/input2.json | player bet_request
