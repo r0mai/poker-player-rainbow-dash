@@ -33,17 +33,18 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
         if 'game_state' in postvars:
             game_state = postvars['game_state'][0]
-            data = json.loads(game_state)
-            index = data.get('in_action', 0)
-            cards = data.get('players', [])[index].get('hole_cards')
-            comm_cards = data.get('community_cards')
-            cards += comm_cards
+            w.write(game_state)
+            # data = json.loads(game_state)
+            # index = data.get('in_action', 0)
+            # cards = data.get('players', [])[index].get('hole_cards')
+            # comm_cards = data.get('community_cards')
+            # cards += comm_cards
 
-            url = 'http://rainman.leanpoker.org/rank'
-            r = requests.get(url, data={'cards': json.dumps(cards)})
-            rdata = json.loads(r.text)
-            data['eval'] = rdata
-            w.write(json.dumps(data))
+            # url = 'http://rainman.leanpoker.org/rank'
+            # r = requests.get(url, data={'cards': json.dumps(cards)})
+            # rdata = json.loads(r.text)
+            # data['eval'] = rdata
+            # w.write(json.dumps(data))
 
         w.close()
 
