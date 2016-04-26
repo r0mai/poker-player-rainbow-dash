@@ -3,9 +3,12 @@ import cgi
 import json
 import os
 import BaseHTTPServer
+import json
+import requests
 
 HOST_NAME = '0.0.0.0'
 PORT_NUMBER = os.environ.has_key('PORT') and int(os.environ['PORT']) or 9300
+
 
 class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
@@ -30,7 +33,17 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
         if 'game_state' in postvars:
             game_state = postvars['game_state'][0]
-            w.write(game_state)
+            data = json.loads(game_state)
+            index = data.get('in_action', 0)
+            cards = data.get('players', [])[index].get('hole_cards')
+            comm_cards = data.get('community_cards')
+            cards += comm_cards
+
+            url = 'http://rainman.leanpoker.org/rank'
+            r = requests.get(url, data={'cards': json.dumps(cards)})
+            rdata = json.loads(r.text)
+            data['eval'] = rdata
+            w.write(json.dumps(data))
 
         w.close()
 
