@@ -26,3 +26,18 @@ Card::Card(json::Value value) {
     else if (suit_string == "diamonds") { suit = Suit::DIAMOND; }
     else { std::cerr << "Suit parse error " << rank_string << std::endl; }
 }
+
+std::ostream& operator<<(std::ostream& os, const Suit& suit) {
+    switch (suit) {
+        case Suit::SPADE: os << "s"; break;
+        case Suit::DIAMOND: os << "d"; break;
+        case Suit::HEART: os << "h"; break;
+        case Suit::CLUB: os << "c"; break;
+    }
+    return os;
+}
+
+std::ostream& operator<<(std::ostream& os, const Card& card) {
+    os << card.rank << card.suit;
+    return os;
+}

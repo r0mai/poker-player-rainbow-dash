@@ -1,5 +1,7 @@
 #pragma once
 
+#include <ostream>
+
 #include "json.h"
 
 enum class Suit {
@@ -23,3 +25,6 @@ public:
     Suit suit = Suit::SPADE;
     int rank = ACE;
 };
+
+std::ostream& operator<<(std::ostream& os, const Suit& suit);
+std::ostream& operator<<(std::ostream& os, const Card& card);
