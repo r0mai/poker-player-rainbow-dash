@@ -1,2 +1,63 @@
 https://github.com/lean-poker/rainman
 
+---
+
+game_state is extended with a key if community_cards is in the json:
+
+{
+	"eval": {
+	    "rank": 8,
+	    "value": 9,
+	    "second_value": 9,
+	    "kickers": [9, 8, 6, 5],
+	    "cards_used": [
+	        {
+	            "rank": "5",
+	            "suit": "diamonds"
+	        },
+	        {
+	            "rank": "6",
+	            "suit": "diamonds"
+	        },
+	        {
+	            "rank": "7",
+	            "suit": "diamonds"
+	        },
+	        {
+	            "rank": "8",
+	            "suit": "diamonds"
+	        },
+	        {
+	            "rank": "9",
+	            "suit": "diamonds"
+	        }
+	    ],
+	    "cards": [
+	        {
+	            "rank": "5",
+	            "suit": "diamonds"
+	        },
+	        {
+	            "rank": "6",
+	            "suit": "diamonds"
+	        },
+	        {
+	            "rank": "7",
+	            "suit": "diamonds"
+	        },
+	        {
+	            "rank": "7",
+	            "suit": "spades"
+	        },
+	        {
+	            "rank": "8",
+	            "suit": "diamonds"
+	        },
+	        {
+	            "rank": "9",
+	            "suit": "diamonds"
+	        }
+	    ]
+	}
+}
+
