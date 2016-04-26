@@ -44,7 +44,7 @@ int flop(json::Value game_state) {
         default:
             std::cerr << "Unknown rank" << std::endl;
         case 0: return toAction(HoleCardRank::FOLDABLE);
-        case 1: return toAction(HoleCardRank::FOLDABLE);
+        case 1: return toAction(HoleCardRank::CALLABLE);
         case 2: return toAction(HoleCardRank::CALLABLE);
         case 3: return toAction(HoleCardRank::RAISABLE);
         case 4: return toAction(HoleCardRank::RAISABLE);
