@@ -43,8 +43,8 @@ HoleCardRank rankHoleCard(const Hand2& hand) {
     /* 8 */ {f, f, f, f, f, f, f, f, r, f, f, f, f, f, c},
     /* 9 */ {f, f, f, f, f, f, f, f, f, r, f, f, f, f, c},
     /* T */ {f, f, f, f, f, f, f, f, f, f, a, c, r, r, r},
-    /* J */ {f, f, f, f, f, f, f, f, f, f, c, a, r, r, r},
-    /* Q */ {f, f, f, f, f, f, f, f, f, f, r, r, a, r, r},
+    /* J */ {f, f, f, f, f, f, f, f, f, f, c, a, c, r, r},
+    /* Q */ {f, f, f, f, f, f, f, f, f, f, r, c, a, r, r},
     /* K */ {f, f, f, f, f, f, f, f, f, f, c, r, r, a, r},
     /* A */ {f, f, f, f, f, c, c, c, c, c, r, r, r, r, a}
     };
@@ -60,9 +60,9 @@ HoleCardRank rankHoleCard(const Hand2& hand) {
     /* 6 */ {f, f, f, f, f, c, r, c, f, f, f, f, f, f, c},
     /* 7 */ {f, f, f, f, f, f, c, r, c, f, f, f, f, f, c},
     /* 8 */ {f, f, f, f, f, f, f, c, r, c, c, f, f, f, r},
-    /* 9 */ {f, f, f, f, f, f, f, f, c, r, r, c, f, f, r},
-    /* T */ {f, f, f, f, f, f, f, f, c, r, r, r, r, r, r},
-    /* J */ {f, f, f, f, f, f, f, f, f, c, r, r, r, r, a},
+    /* 9 */ {f, f, f, f, f, f, f, f, c, r, c, c, f, f, r},
+    /* T */ {f, f, f, f, f, f, f, f, c, c, r, c, r, r, r},
+    /* J */ {f, f, f, f, f, f, f, f, f, c, c, r, r, r, a},
     /* Q */ {f, f, f, f, f, f, f, f, f, f, r, r, r, r, a},
     /* K */ {f, f, f, f, f, f, f, f, f, r, r, r, r, r, a},
     /* A */ {f, f, c, c, c, c, c, c, r, r, r, a, a, a, r}
