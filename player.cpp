@@ -120,6 +120,10 @@ int Player::betRequest(json::Value game_state) {
 
     std::cerr << "XXXXXXXXXX Our hand is = " << hole_cards << std::endl;
 
+    if (!game_state.HasKey("community_cards")) {
+        return preFlop(game_state);
+    }
+
     switch (game_state["community_cards"].ToArray().size()) {
         default:
         case 0:
