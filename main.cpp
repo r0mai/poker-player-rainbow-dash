@@ -13,16 +13,11 @@ int main(int argc, char* argv[])
 
     json::Value game_state = json::Deserialize(game_state_json);
 
-    if(action == "bet_request")
-    {
+    if (action == "bet_request") {
         cout << Player::betRequest(game_state);
-    }
-    else if(action == "showdown")
-    {
+    } else if (action == "showdown") {
         Player::showdown(game_state);
-    }
-    else if(action == "version")
-    {
+    } else if (action == "version") {
         cout << Player::VERSION;
     }
 
