@@ -1,7 +1,7 @@
 #include "player.h"
 #include "Hand.h"
 
-const char* Player::VERSION = "Default C++ folding player";
+const char* Player::VERSION = "Non-Default C++ folding player";
 
 int Player::betRequest(json::Value game_state) {
     int minimum_raise = game_state["minimum_raise"].ToInt();
