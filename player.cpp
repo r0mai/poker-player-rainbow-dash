@@ -59,7 +59,7 @@ int handlePair(json::Value game_state) {
     return toAction(HoleCardRank::CALLABLE); // pair
 }
 
-int flop(json::Value game_state) {
+int flop(json::Value game_state, int our_count = 2) {
     if (!game_state.HasKey("eval")) {
         std::cerr << "NO eval in flop()" << std::endl;
         return preFlop(game_state);
@@ -74,7 +74,14 @@ int flop(json::Value game_state) {
         case 1: return handlePair(game_state);
         case 2: return toAction(HoleCardRank::CALLABLE);
         case 3: return toAction(HoleCardRank::RAISABLE);
-        case 4: return toAction(HoleCardRank::RAISABLE);
+        case 4:
+            if (our_count == 2) {
+                return toAction(HoleCardRank::ALLIN);
+            } else if (our_count == 1) {
+                return toAction(HoleCardRank::RAISABLE);
+            } else {
+                return toAction(HoleCardRank::CALLABLE);
+            }
         case 5: return toAction(HoleCardRank::ALLIN);
         case 6: return toAction(HoleCardRank::ALLIN);
         case 7: return toAction(HoleCardRank::ALLIN);
@@ -87,7 +94,9 @@ int turn(json::Value game_state) {
         std::cerr << "NO eval in turn()" << std::endl;
         return preFlop(game_state);
     }
-    return flop(game_state);
+    int our_count = game_state["our_count"].ToInt();
+    std::cerr << "Turn our count = " << our_count << std::endl;
+    return flop(game_state, our_count);
 }
 
 int river(json::Value game_state) {
@@ -95,7 +104,9 @@ int river(json::Value game_state) {
         std::cerr << "NO eval in river()" << std::endl;
         return preFlop(game_state);
     }
-    return flop(game_state);
+    int our_count = game_state["our_count"].ToInt();
+    std::cerr << "River our count = " << our_count << std::endl;
+    return flop(game_state, our_count);
 }
 
 int Player::betRequest(json::Value game_state) {
