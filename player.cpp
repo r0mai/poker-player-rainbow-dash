@@ -13,6 +13,8 @@ int Player::betRequest(json::Value game_state) {
 
     Hand2 hand = parseHand(game_state["players"][in_action]["hole_cards"]);
 
+    std::cerr << "XXXXXXXXXX Our hand is = " << hand << std::endl;
+
     return current_buy_in - our_bet + minimum_raise;
 }
 
