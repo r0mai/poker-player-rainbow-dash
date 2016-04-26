@@ -43,7 +43,14 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
                 url = 'http://rainman.leanpoker.org/rank'
                 req = requests.get(url, data={'cards': json.dumps(cards)})
                 rdata = json.loads(req.text)
+                used_cards = rdata.get('used_cards', [])
+                our_count = 0
+                for card in our_cards:
+                    if card in used_cards:
+                        our_count += 1
+
                 data['eval'] = rdata
+                data['our_count'] = our_count
                 w.write(json.dumps(data))
             else:
                 w.write(game_state)
