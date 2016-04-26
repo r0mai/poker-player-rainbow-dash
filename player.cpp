@@ -3,7 +3,7 @@
 #include "player.h"
 #include "Hand.h"
 
-const char* Player::VERSION = "Non-Default C++ folding player";
+const char* Player::VERSION = "Pwnies";
 
 int minimum_raise;
 int in_action;
