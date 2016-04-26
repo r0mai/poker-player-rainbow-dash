@@ -7,11 +7,14 @@
 #include <array>
 
 using Hand2 = std::array<Card, 2>;
+using Hand4 = std::array<Card, 5>;
 using Hand5 = std::array<Card, 5>;
 using Hand6 = std::array<Card, 6>;
 using Hand7 = std::array<Card, 7>;
 
-Hand2 parseHand(json::Value value);
+Hand2 parseHand2(json::Value value);
+
+std::vector<Card> parseHandN(json::Value value);
 
 enum class HoleCardRank {
     ALLIN,

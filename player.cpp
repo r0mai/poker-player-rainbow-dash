@@ -21,6 +21,7 @@ int toAction(HoleCardRank rank) {
             return current_buy_in - our_bet + 3*minimum_raise;
         default:
             std::cerr << "Unknown action" << std::endl;
+            return 0;
         case HoleCardRank::FOLDABLE:
             return 0;
         case HoleCardRank::CALLABLE:
@@ -81,7 +82,7 @@ int Player::betRequest(json::Value game_state) {
     our_bet = game_state["players"][in_action]["bet"];
     current_buy_in = game_state["current_buy_in"];
 
-    hole_cards = parseHand(game_state["players"][in_action]["hole_cards"]);
+    hole_cards = parseHand2(game_state["players"][in_action]["hole_cards"]);
 
     std::cerr << "XXXXXXXXXX Our hand is = " << hole_cards << std::endl;
 

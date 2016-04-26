@@ -1,4 +1,5 @@
 #include <iostream>
+#include <tuple>
 #include "Card.h"
 
 Card::Card(json::Value value) {
@@ -28,7 +29,7 @@ Card::Card(json::Value value) {
 }
 
 bool operator<(const Card& lhs, const Card& rhs) {
-    return lhs.rank < rhs.rank;
+    return std::tie(lhs.rank, lhs.suit) < std::tie(rhs.rank, rhs.suit);
 }
 
 std::ostream& operator<<(std::ostream& os, const Suit& suit) {
@@ -44,4 +45,8 @@ std::ostream& operator<<(std::ostream& os, const Suit& suit) {
 std::ostream& operator<<(std::ostream& os, const Card& card) {
     os << card.rank << card.suit;
     return os;
+}
+
+bool operator==(const Card& lhs, const Card& rhs) {
+    return lhs.rank == rhs.rank && lhs.suit == rhs.suit;
 }

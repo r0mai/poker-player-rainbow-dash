@@ -2,13 +2,22 @@
 
 #include <algorithm>
 
-Hand2 parseHand(json::Value value) {
+Hand2 parseHand2(json::Value value) {
     Hand2 hand;
     hand[0] = Card(value[size_t(0)]);
     hand[1] = Card(value[size_t(1)]);
 
     std::sort(hand.begin(), hand.end());
 
+    return hand;
+}
+
+std::vector<Card> parseHandN(json::Value value) {
+    std::vector<Card> hand;
+    for (int i = 0; i < value.size(); ++i) {
+        hand.push_back(Card{value[size_t(i)]});
+    }
+    std::sort(hand.begin(), hand.end());
     return hand;
 }
 
