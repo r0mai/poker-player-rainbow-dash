@@ -44,7 +44,6 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
                 req = requests.get(url, data={'cards': json.dumps(cards)})
                 rdata = json.loads(req.text)
                 data['eval'] = rdata
-                data['board_cards'] = list(set(rdata.get('cards_used', [])) - set(our_cards))
                 w.write(json.dumps(data))
             else:
                 w.write(game_state)
