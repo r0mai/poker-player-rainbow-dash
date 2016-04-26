@@ -18,7 +18,7 @@ HoleCardRank rankHoleCard(const Hand2& hand) {
     auto c = HoleCardRank::CALLABLE;
     auto f = HoleCardRank::FOLDABLE;
 
-    HoleCardRank table[15][15] = {
+    HoleCardRank unsuited_table[15][15] = {
     //       0  1  2  3  4  5  6  7  8  9  T  J  Q  K  A
     /* 0 */ {f, f, f, f, f, f, f, f, f, f, f, f, f, f, f},
     /* 1 */ {f, f, f, f, f, f, f, f, f, f, f, f, f, f, f},
@@ -37,6 +37,25 @@ HoleCardRank rankHoleCard(const Hand2& hand) {
     /* A */ {f, f, r, r, r, r, r, r, r, r, r, r, r, r, r}
     };
 
-    return table[hand[0].rank][hand[1].rank];
+    HoleCardRank suited_table[15][15] = {
+    //       0  1  2  3  4  5  6  7  8  9  T  J  Q  K  A
+    /* 0 */ {f, f, f, f, f, f, f, f, f, f, f, f, f, f, f},
+    /* 1 */ {f, f, f, f, f, f, f, f, f, f, f, f, f, f, f},
+    /* 2 */ {f, f, r, f, f, f, f, f, f, f, f, f, f, f, r},
+    /* 3 */ {f, f, f, r, c, f, f, f, f, f, f, f, f, f, r},
+    /* 4 */ {f, f, f, c, r, c, f, f, f, f, f, f, f, f, r},
+    /* 5 */ {f, f, f, f, c, r, c, f, f, f, f, f, f, f, r},
+    /* 6 */ {f, f, f, f, f, c, r, c, f, f, f, f, f, f, r},
+    /* 7 */ {f, f, f, f, f, f, c, r, c, f, f, f, f, f, r},
+    /* 8 */ {f, f, f, f, f, f, f, c, r, c, c, f, f, f, r},
+    /* 9 */ {f, f, f, f, f, f, f, f, c, r, r, c, f, f, r},
+    /* T */ {f, f, f, f, f, f, f, f, c, r, r, r, r, r, r},
+    /* J */ {f, f, f, f, f, f, f, f, f, c, r, r, r, r, r},
+    /* Q */ {f, f, f, f, f, f, f, f, f, f, r, r, r, r, r},
+    /* K */ {f, f, f, f, f, f, f, f, f, r, r, r, r, r, r},
+    /* A */ {f, f, r, r, r, r, r, r, r, r, r, r, r, r, r}
+    };
 
+    return suited ? suited_table[hand[0].rank][hand[1].rank] :
+                    unsuited_table[hand[0].rank][hand[1].rank];
 }
