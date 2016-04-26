@@ -24,7 +24,11 @@ int toAction(HoleCardRank rank) {
         case HoleCardRank::FOLDABLE:
             return 0;
         case HoleCardRank::CALLABLE:
-            return current_buy_in - our_bet;
+            if (current_buy_in - our_bet < 100) {
+                return current_buy_in - our_bet;
+            } else {
+                return 0;
+            }
     }
 }
 
