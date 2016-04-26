@@ -2,6 +2,7 @@ import time
 import cgi
 import json
 import os
+import sys
 import BaseHTTPServer
 import json
 import requests
@@ -51,6 +52,7 @@ class PlayerService(BaseHTTPServer.BaseHTTPRequestHandler):
 
                 data['eval'] = rdata
                 data['our_count'] = our_count
+                sys.stderr.write('our_count = {}\n'.format(our_count))
                 w.write(json.dumps(data))
             else:
                 w.write(game_state)
