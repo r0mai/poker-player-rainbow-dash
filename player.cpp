@@ -38,6 +38,19 @@ int preFlop(json::Value game_state) {
 }
 
 int handlePair(json::Value game_state) {
+    auto board = parseHandN(game_state["community_cards"]);
+    if (game_state["eval"]["value"].ToInt() == board.back().rank && (
+        board.back().rank == hole_cards[0].rank ||
+        board.back().rank == hole_cards[1].rank))
+    {
+        // we have the highest pair
+        return toAction(HoleCardRank::RAISABLE);
+    }
+    if (hole_cards[0].rank == hole_cards[1].rank &&
+        board.back().rank >= hole_cards[1].rank)
+    {
+        return toAction(HoleCardRank::ALLIN);
+    }
     return toAction(HoleCardRank::CALLABLE); // pair
 }
 
