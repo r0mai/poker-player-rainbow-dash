@@ -9,6 +9,7 @@ int minimum_raise;
 int in_action;
 int our_bet;
 int current_buy_in;
+int pot;
 Hand2 hole_cards;
 
 int toAction(HoleCardRank rank) {
@@ -25,10 +26,14 @@ int toAction(HoleCardRank rank) {
         case HoleCardRank::FOLDABLE:
             return 0;
         case HoleCardRank::CALLABLE:
-            if (current_buy_in - our_bet < 100) {
-                return current_buy_in - our_bet;
-            } else {
-                return 0;
+            {
+                int to_call = current_buy_in - our_bet;
+                int pot_sum = pot + to_call;
+                if (pot_sum > 0 && double(to_call) / pot_sum < 0.2) {
+                    return current_buy_in - our_bet;
+                } else {
+                    return 0;
+                }
             }
     }
 }
@@ -98,6 +103,7 @@ int Player::betRequest(json::Value game_state) {
     in_action = game_state["in_action"].ToInt();
     our_bet = game_state["players"][in_action]["bet"];
     current_buy_in = game_state["current_buy_in"];
+    pot = game_state["pot"];
 
     hole_cards = parseHand2(game_state["players"][in_action]["hole_cards"]);
 
